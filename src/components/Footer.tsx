@@ -192,9 +192,6 @@ export const Footer: React.FC<FooterProps> = ({ onRequestPilot }) => {
           <div>
             © {currentYear} SendProof. All rights reserved.
           </div>
-          <div className="text-slate-400 text-[11px]">
-            Design Complete Stage
-          </div>
         </div>
 
       </div>
