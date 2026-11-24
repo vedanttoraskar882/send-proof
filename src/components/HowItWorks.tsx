@@ -34,7 +34,7 @@ export const HowItWorks: React.FC = () => {
   ];
 
   return (
-    <section id="how-it-works" className="py-20 lg:py-28 bg-surface-light border-b border-surface-border">
+    <section id="how-it-works" className="py-20 lg:py-28 bg-surface-light border-b border-surface-border scroll-mt-24">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         
         {/* Section Header */}

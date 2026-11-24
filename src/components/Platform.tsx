@@ -153,7 +153,7 @@ export const Platform: React.FC = () => {
   };
 
   return (
-    <section id="platform" className="py-20 lg:py-28 bg-white border-b border-surface-border">
+    <section id="platform" className="py-20 lg:py-28 bg-white border-b border-surface-border scroll-mt-24">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         
         {/* Section Header */}
@@ -268,7 +268,7 @@ export const Platform: React.FC = () => {
           </div>
 
           <p className="text-xs text-content-muted text-center italic mt-4">
-            These are descriptive frontend feature cards only. SendProof does not implement live dashboard components in this landing page.
+            Platform features reflect planned commercial capabilities scheduled for phased release.
           </p>
         </div>
 

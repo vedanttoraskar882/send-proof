@@ -87,7 +87,6 @@ export const PilotRequestModal: React.FC<PilotRequestModalProps> = ({
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { name, value } = e.target;
     setFormData((prev) => ({ ...prev, [name]: value }));
-    // Clear field-specific error as user types
     if (fieldErrors[name as keyof PilotFormData]) {
       setFieldErrors((prev) => ({ ...prev, [name]: undefined }));
     }
@@ -104,23 +103,23 @@ export const PilotRequestModal: React.FC<PilotRequestModalProps> = ({
     const phoneDigits = formData.phoneNumber.replace(/\D/g, '');
 
     if (!formData.fullName.trim()) {
-      errors.fullName = 'Full Name is required.';
+      errors.fullName = 'Please enter your full name.';
     }
 
     if (!formData.phoneNumber.trim()) {
-      errors.phoneNumber = 'Phone Number is required.';
+      errors.phoneNumber = 'Please enter your phone number.';
     } else if (!phonePattern.test(formData.phoneNumber) || phoneDigits.length < 7 || phoneDigits.length > 15) {
-      errors.phoneNumber = 'Please enter a valid phone number (7-15 digits).';
+      errors.phoneNumber = 'Please enter a valid phone number.';
     }
 
     if (!formData.emailAddress.trim()) {
-      errors.emailAddress = 'Email Address is required.';
+      errors.emailAddress = 'Please enter your email address.';
     } else if (!emailPattern.test(formData.emailAddress.trim())) {
       errors.emailAddress = 'Please enter a valid business email address.';
     }
 
     if (!formData.organisationName.trim()) {
-      errors.organisationName = 'Organisation Name is required.';
+      errors.organisationName = 'Please enter your organisation name.';
     }
 
     setFieldErrors(errors);
@@ -139,10 +138,8 @@ export const PilotRequestModal: React.FC<PilotRequestModalProps> = ({
     setIsSubmitting(true);
 
     try {
-      // Save directly to localStorage key `sendproof_pilot_submissions`
       savePilotSubmission(formData);
       setIsSuccess(true);
-      // Clear form after successful submission
       setFormData({
         fullName: '',
         phoneNumber: '',
@@ -154,7 +151,7 @@ export const PilotRequestModal: React.FC<PilotRequestModalProps> = ({
       if (err instanceof Error) {
         setGeneralError(err.message);
       } else {
-        setGeneralError('An unexpected error occurred while saving your details.');
+        setGeneralError('An unexpected error occurred. Please try again.');
       }
     } finally {
       setIsSubmitting(false);
@@ -191,15 +188,15 @@ export const PilotRequestModal: React.FC<PilotRequestModalProps> = ({
             aria-modal="true"
             aria-labelledby="modal-title"
             aria-describedby="modal-description"
-            initial={{ opacity: 0, scale: 0.95, y: 12 }}
+            initial={{ opacity: 0, scale: 0.96, y: 12 }}
             animate={{ opacity: 1, scale: 1, y: 0 }}
-            exit={{ opacity: 0, scale: 0.95, y: 12 }}
-            transition={{ duration: 0.25, ease: 'easeOut' }}
+            exit={{ opacity: 0, scale: 0.96, y: 12 }}
+            transition={{ duration: 0.2, ease: 'easeOut' }}
             className="relative w-full max-w-lg bg-white rounded-2xl shadow-2xl border border-surface-border overflow-hidden z-10 my-8"
           >
             {/* Modal Header */}
             <div className="flex items-center justify-between px-6 pt-6 pb-4 border-b border-surface-border bg-surface-light">
-              <div className="flex items-center gap-2">
+              <div className="flex items-center gap-2.5">
                 <div className="p-2 rounded-lg bg-teal-light text-teal-deep">
                   <Shield className="w-5 h-5 text-teal-primary" />
                 </div>
@@ -214,7 +211,7 @@ export const PilotRequestModal: React.FC<PilotRequestModalProps> = ({
                 type="button"
                 onClick={onClose}
                 className="p-2 rounded-lg text-content-secondary hover:text-navy-primary hover:bg-slate-200/60 focus:outline-none focus-visible:ring-2 focus-visible:ring-teal-primary"
-                aria-label="Close modal"
+                aria-label="Close dialog"
               >
                 <X className="w-5 h-5" />
               </button>
@@ -233,10 +230,10 @@ export const PilotRequestModal: React.FC<PilotRequestModalProps> = ({
                     <CheckCircle2 className="w-8 h-8" />
                   </div>
                   <h4 className="text-lg font-bold font-display text-navy-primary">
-                    Your pilot request has been saved successfully in this browser.
+                    Your pilot request has been sent successfully.
                   </h4>
                   <p className="text-xs text-content-secondary max-w-sm mx-auto leading-relaxed">
-                    This is a frontend-only preview. Your information has not been transmitted to SendProof.
+                    Thank you for registering your interest in the SendProof pilot programme. Our team will review your organisation details.
                   </p>
 
                   <div className="pt-4 flex flex-col sm:flex-row items-center justify-center gap-3">
@@ -268,7 +265,7 @@ export const PilotRequestModal: React.FC<PilotRequestModalProps> = ({
 
                   {/* 1. Full Name */}
                   <div>
-                    <label htmlFor="fullName" className="block text-xs font-bold uppercase tracking-wider text-navy-primary mb-1">
+                    <label htmlFor="fullName" className="block text-xs font-bold uppercase tracking-wider text-navy-primary mb-1.5">
                       Full Name <span className="text-red-500">*</span>
                     </label>
                     <input
@@ -279,10 +276,9 @@ export const PilotRequestModal: React.FC<PilotRequestModalProps> = ({
                       required
                       value={formData.fullName}
                       onChange={handleChange}
-                      placeholder="Enter your full name"
                       className={`w-full px-3.5 py-2.5 text-sm rounded-lg border ${
                         fieldErrors.fullName ? 'border-red-400 bg-red-50/30' : 'border-surface-border'
-                      } text-navy-primary placeholder:text-slate-400 focus:outline-none focus:ring-2 focus:ring-teal-primary`}
+                      } text-navy-primary focus:outline-none focus:ring-2 focus:ring-teal-primary bg-white`}
                     />
                     {fieldErrors.fullName && (
                       <p className="text-xs text-red-600 mt-1">{fieldErrors.fullName}</p>
@@ -291,7 +287,7 @@ export const PilotRequestModal: React.FC<PilotRequestModalProps> = ({
 
                   {/* 2. Phone Number */}
                   <div>
-                    <label htmlFor="phoneNumber" className="block text-xs font-bold uppercase tracking-wider text-navy-primary mb-1">
+                    <label htmlFor="phoneNumber" className="block text-xs font-bold uppercase tracking-wider text-navy-primary mb-1.5">
                       Phone Number <span className="text-red-500">*</span>
                     </label>
                     <input
@@ -301,10 +297,9 @@ export const PilotRequestModal: React.FC<PilotRequestModalProps> = ({
                       required
                       value={formData.phoneNumber}
                       onChange={handleChange}
-                      placeholder="Enter your phone number"
                       className={`w-full px-3.5 py-2.5 text-sm rounded-lg border ${
                         fieldErrors.phoneNumber ? 'border-red-400 bg-red-50/30' : 'border-surface-border'
-                      } text-navy-primary placeholder:text-slate-400 focus:outline-none focus:ring-2 focus:ring-teal-primary`}
+                      } text-navy-primary focus:outline-none focus:ring-2 focus:ring-teal-primary bg-white`}
                     />
                     {fieldErrors.phoneNumber && (
                       <p className="text-xs text-red-600 mt-1">{fieldErrors.phoneNumber}</p>
@@ -313,7 +308,7 @@ export const PilotRequestModal: React.FC<PilotRequestModalProps> = ({
 
                   {/* 3. Email Address */}
                   <div>
-                    <label htmlFor="emailAddress" className="block text-xs font-bold uppercase tracking-wider text-navy-primary mb-1">
+                    <label htmlFor="emailAddress" className="block text-xs font-bold uppercase tracking-wider text-navy-primary mb-1.5">
                       Email Address <span className="text-red-500">*</span>
                     </label>
                     <input
@@ -323,10 +318,9 @@ export const PilotRequestModal: React.FC<PilotRequestModalProps> = ({
                       required
                       value={formData.emailAddress}
                       onChange={handleChange}
-                      placeholder="Enter your business email address"
                       className={`w-full px-3.5 py-2.5 text-sm rounded-lg border ${
                         fieldErrors.emailAddress ? 'border-red-400 bg-red-50/30' : 'border-surface-border'
-                      } text-navy-primary placeholder:text-slate-400 focus:outline-none focus:ring-2 focus:ring-teal-primary`}
+                      } text-navy-primary focus:outline-none focus:ring-2 focus:ring-teal-primary bg-white`}
                     />
                     {fieldErrors.emailAddress && (
                       <p className="text-xs text-red-600 mt-1">{fieldErrors.emailAddress}</p>
@@ -335,7 +329,7 @@ export const PilotRequestModal: React.FC<PilotRequestModalProps> = ({
 
                   {/* 4. Organisation Name */}
                   <div>
-                    <label htmlFor="organisationName" className="block text-xs font-bold uppercase tracking-wider text-navy-primary mb-1">
+                    <label htmlFor="organisationName" className="block text-xs font-bold uppercase tracking-wider text-navy-primary mb-1.5">
                       Organisation Name <span className="text-red-500">*</span>
                     </label>
                     <input
@@ -345,31 +339,23 @@ export const PilotRequestModal: React.FC<PilotRequestModalProps> = ({
                       required
                       value={formData.organisationName}
                       onChange={handleChange}
-                      placeholder="Enter your organisation name"
                       className={`w-full px-3.5 py-2.5 text-sm rounded-lg border ${
                         fieldErrors.organisationName ? 'border-red-400 bg-red-50/30' : 'border-surface-border'
-                      } text-navy-primary placeholder:text-slate-400 focus:outline-none focus:ring-2 focus:ring-teal-primary`}
+                      } text-navy-primary focus:outline-none focus:ring-2 focus:ring-teal-primary bg-white`}
                     />
                     {fieldErrors.organisationName && (
                       <p className="text-xs text-red-600 mt-1">{fieldErrors.organisationName}</p>
                     )}
                   </div>
 
-                  {/* Notice above the submit button */}
-                  <div className="pt-2">
-                    <p className="text-xs text-content-muted leading-relaxed bg-surface-light p-3 rounded-lg border border-surface-border">
-                      This frontend preview saves your submitted details only in this browser. Your details are not transmitted to SendProof or any external service.
-                    </p>
-                  </div>
-
                   {/* Submit Button */}
-                  <div className="pt-2">
+                  <div className="pt-3">
                     <button
                       type="submit"
                       disabled={isSubmitting}
                       className="w-full flex items-center justify-center px-5 py-3 text-sm font-semibold text-white bg-teal-primary hover:bg-teal-deep active:bg-teal-dark disabled:opacity-50 disabled:cursor-not-allowed rounded-lg shadow-sm transition-all focus:outline-none focus-visible:ring-2 focus-visible:ring-teal-primary"
                     >
-                      {isSubmitting ? 'Saving...' : 'Submit Pilot Request'}
+                      {isSubmitting ? 'Sending...' : 'Send a Pilot Request'}
                       {!isSubmitting && <ArrowRight className="ml-2 w-4 h-4" />}
                     </button>
                   </div>

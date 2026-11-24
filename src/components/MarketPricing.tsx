@@ -81,7 +81,7 @@ export const MarketPricing: React.FC<MarketPricingProps> = ({ onRequestPilot }) 
   ];
 
   return (
-    <section id="market-pricing" className="py-20 lg:py-28 bg-white border-b border-surface-border">
+    <section id="market-pricing" className="py-20 lg:py-28 bg-white border-b border-surface-border scroll-mt-24">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         
         {/* Section Header */}

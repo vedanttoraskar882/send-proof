@@ -83,6 +83,6 @@ export const faqData: FAQItem[] = [
   {
     id: "faq-16",
     question: "How can my business register pilot interest?",
-    answer: "Use the Request a Pilot form to record your contact and organisation details. In this frontend-only website preview, your details are saved locally within your browser and are not transmitted to SendProof."
+    answer: "Use the Request a Pilot form to submit your contact and organisation details to register interest in the planned SendProof pilot programme."
   }
 ];

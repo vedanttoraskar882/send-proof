@@ -20,26 +20,36 @@ export const About: React.FC = () => {
       title: "Scope Drift",
       description: "Marketing campaigns evolve beyond the purpose or product scope described in the subscriber's original consent wording.",
       icon: Target,
+      tag: "Purpose Mismatch",
+      span: "lg:col-span-2",
     },
     {
       title: "Orphaned Consent",
       description: "Website forms are updated or deleted, making it difficult to establish exactly what subscribers were originally told.",
       icon: FileQuestion,
+      tag: "Lost Source Text",
+      span: "lg:col-span-1",
     },
     {
       title: "Merged Mailing Lists",
       description: "Audience lists from different systems, brands or acquisitions are combined despite having different consent terms.",
       icon: GitMerge,
+      tag: "Segment Contamination",
+      span: "lg:col-span-1",
     },
     {
       title: "Stale Consent",
       description: "Older consent records may no longer reflect a subscriber's current expectations or preferences, particularly during re-engagement campaigns.",
       icon: Clock,
+      tag: "Age & Inactivity",
+      span: "lg:col-span-1",
     },
     {
       title: "Assumed Soft Opt-In",
       description: "Businesses may rely on soft opt-in without sufficient evidence that the relevant conditions have been met.",
       icon: ShieldAlert,
+      tag: "Unverified Conditions",
+      span: "lg:col-span-1",
     },
   ];
 
@@ -82,7 +92,7 @@ export const About: React.FC = () => {
   ];
 
   return (
-    <section id="about" className="py-20 lg:py-28 bg-surface-light border-b border-surface-border">
+    <section id="about" className="py-20 lg:py-28 bg-surface-light border-b border-surface-border scroll-mt-24">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         
         {/* Section Header */}
@@ -100,19 +110,19 @@ export const About: React.FC = () => {
             <p>
               The original wording that authorised a subscriber's inclusion in a campaign can become difficult to locate, verify or interpret.
             </p>
-            <p className="font-medium text-navy-primary">
+            <p className="font-semibold text-navy-primary">
               SendProof is designed to connect these fragmented records and provide a traceable relationship between the subscriber, original consent, audience segment and marketing campaign.
             </p>
           </div>
         </div>
 
-        {/* Subsection 1: The Consent Evidence Problem */}
-        <div className="mb-20">
-          <div className="text-center max-w-2xl mx-auto mb-10">
-            <h3 className="text-2xl sm:text-3xl font-bold font-display text-navy-primary">
+        {/* Subsection 1: The Consent Evidence Problem (Bento-Grid) */}
+        <div className="mb-24">
+          <div className="text-center max-w-2xl mx-auto mb-12">
+            <h3 className="text-2xl sm:text-3xl font-extrabold font-display text-navy-primary tracking-tight">
               The Consent Evidence Problem
             </h3>
-            <p className="text-sm text-content-secondary mt-1">
+            <p className="text-sm sm:text-base text-content-secondary mt-1.5">
               Five common operational challenges that lead to consent ambiguity and regulatory exposure.
             </p>
           </div>
@@ -123,25 +133,26 @@ export const About: React.FC = () => {
               return (
                 <div 
                   key={prob.title}
-                  className={`p-6 rounded-2xl bg-white border border-surface-border shadow-regtech hover:shadow-regtech-hover transition-all flex flex-col justify-between ${
-                    idx === 4 ? 'md:col-span-2 lg:col-span-1' : ''
-                  }`}
+                  className={`p-7 rounded-2xl bg-white border border-surface-border shadow-regtech hover:shadow-regtech-hover hover:border-teal-primary/30 transition-all duration-200 flex flex-col justify-between ${prob.span}`}
                 >
                   <div>
-                    <div className="flex items-center justify-between mb-4">
-                      <div className="p-3 rounded-xl bg-teal-light text-teal-deep">
+                    <div className="flex items-center justify-between mb-5">
+                      <div className="p-3.5 rounded-xl bg-teal-light text-teal-deep">
                         <Icon className="w-6 h-6 text-teal-primary" />
                       </div>
-                      <span className="text-xs font-semibold text-content-muted">
-                        Issue 0{idx + 1}
+                      <span className="text-[11px] font-bold px-2.5 py-1 rounded-full bg-slate-100 text-slate-600 uppercase tracking-wider">
+                        {prob.tag}
                       </span>
                     </div>
-                    <h4 className="text-lg font-bold font-display text-navy-primary mb-2">
+                    <h4 className="text-xl font-bold font-display text-navy-primary mb-2.5">
                       {prob.title}
                     </h4>
                     <p className="text-sm text-content-secondary leading-relaxed">
                       {prob.description}
                     </p>
+                  </div>
+                  <div className="pt-4 mt-4 border-t border-surface-border/50 text-[11px] font-semibold text-content-muted uppercase tracking-wider">
+                    Risk Factor 0{idx + 1}
                   </div>
                 </div>
               );
@@ -150,18 +161,18 @@ export const About: React.FC = () => {
         </div>
 
         {/* Subsection 2: One Independent Evidence Layer */}
-        <div className="mb-20">
-          <div className="text-center max-w-2xl mx-auto mb-10">
-            <h3 className="text-2xl sm:text-3xl font-bold font-display text-navy-primary">
+        <div className="mb-24">
+          <div className="text-center max-w-2xl mx-auto mb-12">
+            <h3 className="text-2xl sm:text-3xl font-extrabold font-display text-navy-primary tracking-tight">
               One Independent Evidence Layer
             </h3>
-            <p className="text-sm text-content-secondary mt-1">
+            <p className="text-sm sm:text-base text-content-secondary mt-1.5">
               Connecting capture points to ongoing marketing activities with verifiable provenance.
             </p>
           </div>
 
           {/* Visual Comparison Flowchart Diagram */}
-          <div className="bg-navy-primary rounded-2xl p-6 sm:p-10 text-white shadow-regtech-dark border border-navy-light/40 relative overflow-hidden">
+          <div className="bg-navy-primary rounded-3xl p-6 sm:p-10 lg:p-12 text-white shadow-regtech-dark border border-navy-light/40 relative overflow-hidden">
             <div className="absolute inset-0 bg-grid-navy opacity-40 pointer-events-none" />
 
             <div className="relative grid grid-cols-1 lg:grid-cols-11 gap-6 items-center">
@@ -174,9 +185,9 @@ export const About: React.FC = () => {
                 </div>
                 <div className="space-y-2 text-xs sm:text-sm font-medium">
                   {['Website forms', 'Checkout opt-ins', 'Email platform consent logs', 'CSV imports', 'Offline sign-up records'].map((source) => (
-                    <div key={source} className="p-2.5 rounded-lg bg-navy-secondary/80 border border-white/10 flex items-center justify-between">
+                    <div key={source} className="p-3 rounded-xl bg-navy-secondary/80 border border-white/10 flex items-center justify-between hover:border-teal-primary/40 transition-colors">
                       <span className="text-slate-200">{source}</span>
-                      <span className="w-1.5 h-1.5 rounded-full bg-teal-primary shrink-0" />
+                      <span className="w-2 h-2 rounded-full bg-teal-primary shrink-0" />
                     </div>
                   ))}
                 </div>
@@ -184,36 +195,36 @@ export const About: React.FC = () => {
 
               {/* FLOW ARROW 1 */}
               <div className="lg:col-span-1 flex justify-center py-2 lg:py-0">
-                <div className="p-2 rounded-full bg-teal-primary/20 text-teal-light border border-teal-primary/30">
+                <div className="p-2.5 rounded-full bg-teal-primary/20 text-teal-light border border-teal-primary/40 shadow-xs">
                   <ArrowRight className="w-5 h-5 rotate-90 lg:rotate-0" />
                 </div>
               </div>
 
               {/* CENTRE: SendProof Evidence Engine */}
-              <div className="lg:col-span-3 p-5 sm:p-6 rounded-xl bg-gradient-to-b from-navy-secondary to-navy-dark border-2 border-teal-primary/50 shadow-teal-glow space-y-3.5 text-center">
+              <div className="lg:col-span-3 p-6 sm:p-7 rounded-2xl bg-gradient-to-b from-navy-secondary to-navy-dark border-2 border-teal-primary/60 shadow-teal-glow space-y-4 text-center relative">
                 <div className="flex items-center justify-center gap-2">
-                  <Cpu className="w-5 h-5 text-teal-primary" />
-                  <span className="font-display font-extrabold text-base tracking-wide text-white">
+                  <Cpu className="w-6 h-6 text-teal-primary" />
+                  <span className="font-display font-black text-lg tracking-wide text-white">
                     SEND<span className="text-teal-primary">PROOF</span>
                   </span>
                 </div>
-                <div className="text-[11px] font-semibold uppercase tracking-wider text-teal-light bg-teal-primary/20 py-1 px-2.5 rounded-full inline-block">
+                <div className="text-[11px] font-bold uppercase tracking-wider text-teal-light bg-teal-primary/20 py-1 px-3 rounded-full inline-block">
                   Evidence & Assessment Layer
                 </div>
                 <div className="space-y-2 text-xs text-left pt-1">
-                  <div className="p-2 rounded bg-navy-primary/90 border border-teal-primary/30 text-slate-200 flex items-center gap-2">
+                  <div className="p-2.5 rounded-lg bg-navy-primary/95 border border-teal-primary/30 text-slate-200 flex items-center gap-2.5 font-medium">
                     <span className="w-1.5 h-1.5 rounded-full bg-teal-primary" />
                     <span>Consent normalisation</span>
                   </div>
-                  <div className="p-2 rounded bg-navy-primary/90 border border-teal-primary/30 text-slate-200 flex items-center gap-2">
+                  <div className="p-2.5 rounded-lg bg-navy-primary/95 border border-teal-primary/30 text-slate-200 flex items-center gap-2.5 font-medium">
                     <span className="w-1.5 h-1.5 rounded-full bg-teal-primary" />
                     <span>Provenance graph</span>
                   </div>
-                  <div className="p-2 rounded bg-navy-primary/90 border border-teal-primary/30 text-slate-200 flex items-center gap-2">
+                  <div className="p-2.5 rounded-lg bg-navy-primary/95 border border-teal-primary/30 text-slate-200 flex items-center gap-2.5 font-medium">
                     <span className="w-1.5 h-1.5 rounded-full bg-teal-primary" />
                     <span>Evidence assessment</span>
                   </div>
-                  <div className="p-2 rounded bg-navy-primary/90 border border-teal-primary/30 text-slate-200 flex items-center gap-2">
+                  <div className="p-2.5 rounded-lg bg-navy-primary/95 border border-teal-primary/30 text-slate-200 flex items-center gap-2.5 font-medium">
                     <span className="w-1.5 h-1.5 rounded-full bg-teal-primary" />
                     <span>Advisory decision gate</span>
                   </div>
@@ -222,7 +233,7 @@ export const About: React.FC = () => {
 
               {/* FLOW ARROW 2 */}
               <div className="lg:col-span-1 flex justify-center py-2 lg:py-0">
-                <div className="p-2 rounded-full bg-teal-primary/20 text-teal-light border border-teal-primary/30">
+                <div className="p-2.5 rounded-full bg-teal-primary/20 text-teal-light border border-teal-primary/40 shadow-xs">
                   <ArrowRight className="w-5 h-5 rotate-90 lg:rotate-0" />
                 </div>
               </div>
@@ -235,9 +246,9 @@ export const About: React.FC = () => {
                 </div>
                 <div className="space-y-2 text-xs sm:text-sm font-medium">
                   {['Regular newsletters', 'Product promotions', 'Re-engagement campaigns', 'Partner offers', 'Merged audience campaigns'].map((act) => (
-                    <div key={act} className="p-2.5 rounded-lg bg-navy-secondary/80 border border-white/10 flex items-center justify-between">
+                    <div key={act} className="p-3 rounded-xl bg-navy-secondary/80 border border-white/10 flex items-center justify-between hover:border-white/30 transition-colors">
                       <span className="text-slate-200">{act}</span>
-                      <span className="w-1.5 h-1.5 rounded-full bg-slate-400 shrink-0" />
+                      <span className="w-2 h-2 rounded-full bg-slate-400 shrink-0" />
                     </div>
                   ))}
                 </div>
@@ -246,8 +257,8 @@ export const About: React.FC = () => {
             </div>
 
             {/* Supporting Statement Banner */}
-            <div className="mt-8 pt-6 border-t border-white/10 text-center">
-              <p className="text-sm sm:text-base text-teal-light font-medium max-w-3xl mx-auto">
+            <div className="mt-10 pt-6 border-t border-white/10 text-center">
+              <p className="text-sm sm:text-base text-teal-light font-medium max-w-3xl mx-auto leading-relaxed">
                 "SendProof connects the consent side and the campaign side without replacing existing email marketing platforms or modifying their data."
               </p>
             </div>
@@ -255,27 +266,27 @@ export const About: React.FC = () => {
         </div>
 
         {/* Subsection 3: Designed to Work Differently (Comparison Table) */}
-        <div className="mb-10">
-          <div className="text-center max-w-2xl mx-auto mb-10">
-            <h3 className="text-2xl sm:text-3xl font-bold font-display text-navy-primary">
+        <div className="mb-12">
+          <div className="text-center max-w-2xl mx-auto mb-12">
+            <h3 className="text-2xl sm:text-3xl font-extrabold font-display text-navy-primary tracking-tight">
               Designed to Work Differently
             </h3>
-            <p className="text-sm text-content-secondary mt-1">
+            <p className="text-sm sm:text-base text-content-secondary mt-1.5">
               How SendProof's proposed evidence layer differs from conventional list management tools.
             </p>
           </div>
 
-          <div className="overflow-x-auto rounded-2xl border border-surface-border bg-white shadow-regtech">
-            <table className="w-full text-left text-sm border-collapse">
+          <div className="overflow-x-auto rounded-3xl border border-surface-border bg-white shadow-regtech">
+            <table className="w-full text-left text-sm border-collapse min-w-[620px]">
               <thead>
                 <tr className="bg-navy-primary text-white border-b border-surface-border">
-                  <th scope="col" className="py-4 px-5 font-bold uppercase tracking-wider text-xs">
+                  <th scope="col" className="py-4 px-6 font-bold uppercase tracking-wider text-xs">
                     Capability
                   </th>
-                  <th scope="col" className="py-4 px-5 font-bold uppercase tracking-wider text-xs text-slate-300">
+                  <th scope="col" className="py-4 px-6 font-bold uppercase tracking-wider text-xs text-slate-300">
                     Conventional Approach
                   </th>
-                  <th scope="col" className="py-4 px-5 font-bold uppercase tracking-wider text-xs text-teal-light bg-navy-secondary">
+                  <th scope="col" className="py-4 px-6 font-bold uppercase tracking-wider text-xs text-teal-light bg-navy-secondary">
                     SendProof Approach
                   </th>
                 </tr>
@@ -284,16 +295,16 @@ export const About: React.FC = () => {
                 {comparisonRows.map((row, index) => (
                   <tr 
                     key={row.capability} 
-                    className={index % 2 === 0 ? 'bg-white' : 'bg-surface-light/60'}
+                    className={index % 2 === 0 ? 'bg-white' : 'bg-surface-light/50'}
                   >
-                    <td className="py-3.5 px-5 font-semibold text-navy-primary">
+                    <td className="py-4 px-6 font-bold text-navy-primary">
                       {row.capability}
                     </td>
-                    <td className="py-3.5 px-5 text-content-secondary flex items-center gap-2">
+                    <td className="py-4 px-6 text-content-secondary flex items-center gap-2">
                       <XCircle className="w-4 h-4 text-slate-400 shrink-0" />
                       <span>{row.conventional}</span>
                     </td>
-                    <td className="py-3.5 px-5 font-medium text-teal-deep bg-teal-light/20 flex items-center gap-2">
+                    <td className="py-4 px-6 font-semibold text-teal-deep bg-teal-light/20 flex items-center gap-2">
                       <CheckCircle2 className="w-4 h-4 text-teal-primary shrink-0" />
                       <span>{row.sendproof}</span>
                     </td>
@@ -303,12 +314,12 @@ export const About: React.FC = () => {
             </table>
           </div>
 
-          <p className="text-xs text-content-muted mt-3 text-center italic">
+          <p className="text-xs text-content-muted mt-3.5 text-center italic">
             Comparison describes the proposed SendProof approach and common conventional workflows. Individual products may offer additional functionality.
           </p>
         </div>
 
-        {/* Subsection 4: Founder Profile Component */}
+        {/* Subsection 4: Founder Profile Component (without photo per request) */}
         <FounderProfile />
 
       </div>

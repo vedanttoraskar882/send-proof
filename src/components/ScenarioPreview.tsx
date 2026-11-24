@@ -190,9 +190,9 @@ export const ScenarioPreview: React.FC = () => {
           </motion.div>
         </AnimatePresence>
 
-        {/* Safe notice */}
+        {/* Advisory notice */}
         <div className="px-6 py-3 bg-surface-light border-t border-surface-border text-center text-xs text-content-muted">
-          Predefined frontend demonstration only. SendProof does not upload data, provide legal certifications or send email campaigns.
+          Illustrative scenario demonstration. SendProof provides advisory consent evidence and decision support; it does not provide legal advice or send email campaigns.
         </div>
 
       </div>

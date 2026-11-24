@@ -180,13 +180,10 @@ export const Footer: React.FC<FooterProps> = ({ onRequestPilot }) => {
 
         </div>
 
-        {/* Regulatory & Privacy Notices */}
+        {/* Regulatory & Advisory Notice */}
         <div className="mt-14 pt-8 border-t border-white/10 space-y-3 text-xs text-slate-400">
           <p>
             SendProof is a proposed consent evidence and decision-support platform. It does not provide legal advice or certify PECR or UK GDPR compliance.
-          </p>
-          <p>
-            Pilot form submissions on this website preview are stored locally in your browser and are not transmitted to an external server.
           </p>
         </div>
 
@@ -196,7 +193,7 @@ export const Footer: React.FC<FooterProps> = ({ onRequestPilot }) => {
             © {currentYear} SendProof. All rights reserved.
           </div>
           <div className="text-slate-400 text-[11px]">
-            Frontend-Only Preview • Design Complete Stage
+            Design Complete Stage
           </div>
         </div>
 
